@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhavna's Savors — Homemade Savories &amp; Mithai, Karachi</title>
+<meta name="description" content="Bhavna's Savors — fresh, homemade samosas, pakoras, namkeen and mithai made daily in Karachi. Order online or via WhatsApp.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+  --brown:#3C2415;
+  --brown-soft:#52331e;
+  --cream:#FBF2E3;
+  --cream-deep:#F6E9D2;
+  --rust:#C1502E;
+  --rust-deep:#A33E22;
+  --gold:#D9A441;
+  --beige:#EDDCBE;
+  --charcoal:#241307;
+  --ink:#2A1B10;
+  --shadow: 0 10px 30px -10px rgba(36,19,7,0.35);
+  --radius: 18px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:'Outfit', sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+h1,h2,h3,h4{font-family:'Fraunces', serif; margin:0; color:var(--brown);}
+p{line-height:1.7; margin:0;}
+.mono{font-family:'Space Mono', monospace;}
+section{position:relative;}
+.wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
+.reveal.visible{opacity:1; transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1; transform:none; transition:none;}
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:14px 28px; border-radius:999px; font-weight:600; font-size:15px;
+  border:2px solid transparent; cursor:pointer; transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--rust); color:var(--cream);}
+.btn-primary:hover{background:var(--rust-deep); transform:translateY(-3px); box-shadow:var(--shadow);}
+.btn-outline{border-color:var(--brown); color:var(--brown); background:transparent;}
+.btn-outline:hover{background:var(--brown); color:var(--cream); transform:translateY(-3px);}
+.btn-light{background:var(--cream); color:var(--brown);}
+.btn-light:hover{background:var(--gold); color:var(--charcoal); transform:translateY(-3px);}
+
+/* ---------- Section labels ---------- */
+.eyebrow{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'Space Mono', monospace; text-transform:uppercase; letter-spacing:.14em;
+  font-size:12.5px; color:var(--rust); font-weight:700; margin-bottom:14px;
+}
+.eyebrow::before{content:""; width:22px; height:2px; background:var(--gold); display:inline-block;}
+
+/* ================= NAV ================= */
+.site-nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 32px; transition:padding .35s ease, background .35s ease, box-shadow .35s ease;
+}
+.site-nav.scrolled{
+  padding:12px 32px; background:rgba(251,242,227,0.92); backdrop-filter:blur(10px);
+  box-shadow:0 6px 24px -10px rgba(36,19,7,0.25);
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-family:'Fraunces', serif; font-weight:600; font-size:22px; color:var(--brown);
+}
+.brand .brand-mark{
+  width:38px; height:38px; border-radius:50%;
+  background:var(--rust); color:var(--cream); display:flex; align-items:center; justify-content:center;
+  font-size:18px; flex-shrink:0;
+}
+.brand small{display:block; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.16em; color:var(--gold); font-weight:700;}
+
+.nav-links{display:flex; align-items:center; gap:30px; list-style:none; margin:0; padding:0;}
+.nav-links a{
+  font-size:14.5px; font-weight:600; color:var(--brown-soft); position:relative; padding:6px 2px;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--rust);
+  transition:width .3s ease;
+}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{display:flex; align-items:center; gap:14px;}
+.hamburger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px;}
+.hamburger span{width:26px; height:2.5px; background:var(--brown); border-radius:2px;}
+
+@media (max-width: 920px){
+  .nav-links{
+    position:fixed; top:0; right:-100%; height:100vh; width:78%; max-width:320px;
+    background:var(--brown); flex-direction:column; justify-content:center; align-items:flex-start;
+    padding:40px; gap:26px; transition:right .4s ease; box-shadow:-10px 0 40px rgba(0,0,0,.3);
+  }
+  .nav-links.open{right:0;}
+  .nav-links a{color:var(--cream); font-size:18px;}
+  .nav-links a::after{background:var(--gold);}
+  .hamburger{display:flex;}
+  .nav-cta .btn-outline{display:none;}
+}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100vh; display:flex; align-items:center;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(217,164,65,0.25), transparent 60%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+  padding:140px 0 90px;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center;
+}
+.hero-stamp{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'Space Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--brown-soft); border:1.5px dashed var(--gold); border-radius:999px; padding:8px 16px 8px 8px;
+  margin-bottom:26px; background:rgba(255,255,255,.4);
+}
+.hero-stamp .seal{
+  width:26px; height:26px; border-radius:50%; background:var(--rust); color:var(--cream);
+  display:flex; align-items:center; justify-content:center; font-size:13px; animation:spin-slow 12s linear infinite;
+}
+@keyframes spin-slow{from{transform:rotate(0)} to{transform:rotate(360deg)}}
+.hero h1{
+  font-size:clamp(40px, 6vw, 70px); line-height:1.04; font-weight:600; letter-spacing:-.01em;
+}
+.hero h1 em{
+  font-style:italic; color:var(--rust); font-weight:500;
+  background:linear-gradient(120deg, transparent 0%, transparent 96%, var(--gold) 96%, var(--gold) 100%);
+  background-size:100% 12px; background-repeat:no-repeat; background-position:0 92%;
+}
+.hero p.lead{
+  margin-top:24px; font-size:18px; max-width:480px; color:var(--brown-soft);
+}
+.hero-actions{display:flex; gap:16px; margin-top:36px; flex-wrap:wrap;}
+.hero-trust{display:flex; gap:34px; margin-top:46px; flex-wrap:wrap;}
+.hero-trust div b{display:block; font-family:'Fraunces',serif; font-size:28px; color:var(--brown);}
+.hero-trust div span{font-size:12.5px; color:var(--brown-soft); font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:.06em;}
+
+/* Hero visual */
+.hero-visual{position:relative; height:520px;}
+.hero-photo-main{
+  position:absolute; width:78%; right:0; top:30px; border-radius:24px; overflow:hidden;
+  box-shadow:var(--shadow); border:6px solid var(--cream); transform:rotate(2deg);
+  animation:float-main 7s ease-in-out infinite;
+}
+.hero-photo-main img{height:420px; width:100%; object-fit:cover;}
+@keyframes float-main{0%,100%{transform:rotate(2deg) translateY(0);} 50%{transform:rotate(1deg) translateY(-14px);}}
+
+.hero-photo-float{
+  position:absolute; width:230px; left:-10px; bottom:0; border-radius:18px; overflow:hidden;
+  box-shadow:var(--shadow); border:5px solid var(--cream); transform:rotate(-6deg);
+  animation:float-small 6s ease-in-out infinite;
+}
+.hero-photo-float img{height:170px; width:100%; object-fit:cover;}
+@keyframes float-small{0%,100%{transform:rotate(-6deg) translateY(0);} 50%{transform:rotate(-3deg) translateY(-18px);}}
+
+.steam{position:absolute; pointer-events:none;}
+.steam svg{display:block;}
+.steam path{
+  fill:none; stroke:var(--gold); stroke-width:3; stroke-linecap:round; opacity:.55;
+  stroke-dasharray:6 10; animation:steam-rise 4.5s linear infinite;
+}
+@keyframes steam-rise{
+  0%{stroke-dashoffset:0; opacity:0;}
+  20%{opacity:.55;}
+  100%{stroke-dashoffset:-220; opacity:0;}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-photo-main, .hero-photo-float, .hero-stamp .seal, .steam path{animation:none !important;}
+}
+
+@media (max-width: 980px){
+  .hero-grid{grid-template-columns:1fr; text-align:left;}
+  .hero-visual{height:380px; margin-top:30px;}
+  .hero-photo-main{width:92%;}
+}
+
+/* ================= TICKER (signature marquee) ================= */
+.ticker{
+  background:var(--brown); padding:18px 0; overflow:hidden; border-top:1px solid var(--brown-soft); border-bottom:1px solid var(--brown-soft);
+}
+.ticker-track{display:flex; width:max-content; animation:ticker-scroll 32s linear infinite;}
+.ticker-track span{
+  font-family:'Space Mono', monospace; color:var(--cream-deep); font-size:14px; letter-spacing:.08em;
+  text-transform:uppercase; padding:0 28px; white-space:nowrap; display:flex; align-items:center; gap:14px;
+}
+.ticker-track span::before{content:"✦"; color:var(--gold); font-size:11px;}
+@keyframes ticker-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion: reduce){.ticker-track{animation:none;}}
+
+/* ================= ABOUT ================= */
+.about{padding:110px 0; background:var(--cream);}
+.about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center;}
+.about-photos{position:relative; height:460px;}
+.about-photo-a{position:absolute; width:80%; top:0; left:0; border-radius:20px; overflow:hidden; box-shadow:var(--shadow); border:6px solid var(--beige);}
+.about-photo-a img{height:380px; object-fit:cover; width:100%;}
+.about-photo-b{position:absolute; width:48%; right:-10px; bottom:-20px; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); border:5px solid var(--cream);}
+.about-photo-b img{height:190px; object-fit:cover; width:100%;}
+.about h2{font-size:clamp(30px,4vw,44px); line-height:1.15; margin-bottom:20px;}
+.about p{color:var(--brown-soft); font-size:16.5px; max-width:560px;}
+.about p + p{margin-top:16px;}
+.about-quote{
+  margin-top:28px; padding-left:20px; border-left:3px solid var(--gold);
+  font-family:'Fraunces', serif; font-style:italic; font-size:19px; color:var(--brown);
+}
+@media (max-width: 920px){
+  .about-grid{grid-template-columns:1fr;}
+  .about-photos{height:360px; margin-bottom:20px;}
+}
+
+/* ================= WHY US ================= */
+.why{padding:100px 0; background:var(--beige);}
+.why-head{max-width:640px; margin-bottom:54px;}
+.why-head h2{font-size:clamp(30px,4vw,44px);}
+.why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+.why-card{
+  background:var(--cream); border-radius:var(--radius); padding:30px 26px; transition:transform .3s ease, box-shadow .3s ease;
+  border:1px solid rgba(60,36,21,0.08);
+}
+.why-card:hover{transform:translateY(-8px); box-shadow:var(--shadow);}
+.why-icon{
+  width:52px; height:52px; border-radius:14px; background:var(--rust); color:var(--cream);
+  display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+}
+.why-icon svg{width:24px; height:24px;}
+.why-card h3{font-size:19px; margin-bottom:10px;}
+.why-card p{font-size:14.5px; color:var(--brown-soft);}
+@media (max-width:980px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.why-grid{grid-template-columns:1fr;}}
+
+/* ================= MENU ================= */
+.menu{padding:110px 0 90px; background:var(--cream);}
+.menu-head{text-align:center; max-width:680px; margin:0 auto 50px;}
+.menu-head h2{font-size:clamp(30px,4vw,46px);}
+.menu-head p{color:var(--brown-soft); margin-top:14px; font-size:16px;}
+
+.menu-tabs{
+  display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:44px;
+}
+.menu-tab{
+  font-family:'Space Mono', monospace; font-size:13px; letter-spacing:.04em; text-transform:uppercase;
+  padding:11px 20px; border-radius:10px 10px 0 0; background:var(--beige); color:var(--brown-soft);
+  border:none; cursor:pointer; font-weight:700; position:relative; transition:background .25s ease, color .25s ease;
+}
+.menu-tab.active{background:var(--rust); color:var(--cream);}
+.menu-tab:hover:not(.active){background:#e4cfa6;}
+
+.menu-panel{display:none;}
+.menu-panel.active{display:block; animation:fade-in .45s ease;}
+@keyframes fade-in{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+.menu-list{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+.menu-card{
+  display:flex; gap:18px; background:var(--beige); border-radius:16px; padding:18px;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.menu-card:hover{transform:translateY(-5px); box-shadow:var(--shadow);}
+.menu-thumb{
+  width:104px; height:104px; border-radius:12px; overflow:hidden; flex-shrink:0; background:var(--gold);
+}
+.menu-thumb img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+.menu-card:hover .menu-thumb img{transform:scale(1.1);}
+.menu-info{flex:1; min-width:0;}
+.menu-info h4{font-size:18px; margin-bottom:4px;}
+.menu-tag{font-size:13px; color:var(--brown-soft); margin-bottom:10px; display:block;}
+.price-row{display:flex; align-items:baseline; gap:6px; margin-top:6px;}
+.price-row .qty{font-size:13px; color:var(--brown-soft); font-family:'Space Mono',monospace; flex-shrink:0;}
+.price-row .dots{flex:1; border-bottom:2px dotted var(--gold); height:1px; margin:0 6px 4px;}
+.price-row .price{font-family:'Space Mono',monospace; font-weight:700; color:var(--rust-deep); font-size:14.5px; flex-shrink:0;}
+
+@media (max-width:920px){.menu-list{grid-template-columns:1fr;}}
+@media (max-width:480px){
+  .menu-card{flex-direction:column;}
+  .menu-thumb{width:100%; height:160px;}
+}
+
+.menu-note{
+  text-align:center; margin-top:50px; font-family:'Space Mono', monospace; font-size:13px;
+  color:var(--brown-soft); letter-spacing:.03em;
+}
+
+/* ================= GALLERY ================= */
+.gallery{padding:100px 0; background:var(--charcoal);}
+.gallery .eyebrow{color:var(--gold);}
+.gallery h2{color:var(--cream); font-size:clamp(30px,4vw,44px); max-width:600px; margin-bottom:46px;}
+.gallery-grid{
+  display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:140px; gap:14px;
+}
+.gallery-grid figure{
+  margin:0; border-radius:14px; overflow:hidden; position:relative; cursor:pointer;
+}
+.gallery-grid figure img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease, filter .5s ease;}
+.gallery-grid figure:hover img{transform:scale(1.08); filter:brightness(1.05);}
+.gallery-grid figure figcaption{
+  position:absolute; bottom:0; left:0; right:0; padding:14px 12px 10px;
+  background:linear-gradient(180deg, transparent, rgba(0,0,0,.65));
+  color:var(--cream); font-size:13px; font-weight:600; opacity:0; transform:translateY(8px);
+  transition:opacity .3s ease, transform .3s ease;
+}
+.gallery-grid figure:hover figcaption{opacity:1; transform:translateY(0);}
+.gallery-grid figure:nth-child(1){grid-column:span 2; grid-row:span 2;}
+.gallery-grid figure:nth-child(4){grid-row:span 2;}
+@media (max-width:920px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:160px;}
+  .gallery-grid figure:nth-child(1){grid-column:span 2; grid-row:span 1;}
+  .gallery-grid figure:nth-child(4){grid-row:span 1;}
+}
+
+/* ================= REVIEWS ================= */
+.reviews{padding:110px 0; background:var(--cream-deep);}
+.reviews-head{text-align:center; max-width:640px; margin:0 auto 50px;}
+.reviews-head h2{font-size:clamp(30px,4vw,44px);}
+.review-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.review-card{
+  background:var(--cream); border-radius:18px; padding:30px 26px; box-shadow:0 8px 24px -14px rgba(36,19,7,.25);
+  display:flex; flex-direction:column; gap:18px;
+}
+.stars{color:var(--gold); font-size:16px; letter-spacing:2px;}
+.review-card p.quote{font-size:15.5px; color:var(--brown-soft); font-style:italic;}
+.reviewer{display:flex; align-items:center; gap:12px; margin-top:auto;}
+.avatar{
+  width:46px; height:46px; border-radius:50%; background:var(--rust); color:var(--cream);
+  display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:600; font-size:17px; flex-shrink:0;
+}
+.reviewer b{display:block; font-size:14.5px; color:var(--brown);}
+.reviewer span{font-size:12.5px; color:var(--brown-soft);}
+@media (max-width:920px){.review-grid{grid-template-columns:1fr;}}
+
+/* ================= CONTACT ================= */
+.contact{padding:110px 0; background:var(--brown); color:var(--cream);}
+.contact .eyebrow{color:var(--gold);}
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+.contact h2{color:var(--cream); font-size:clamp(30px,4vw,44px); margin-bottom:18px;}
+.contact > .wrap > p{max-width:480px;}
+.contact-info-list{margin-top:34px; display:flex; flex-direction:column; gap:24px;}
+.contact-info-list li{display:flex; gap:16px; align-items:flex-start; list-style:none;}
+.contact-info-list .ci-icon{
+  width:44px; height:44px; border-radius:12px; background:rgba(217,164,65,0.18); color:var(--gold);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.contact-info-list .ci-icon svg{width:20px; height:20px;}
+.contact-info-list b{display:block; font-size:15.5px; margin-bottom:4px;}
+.contact-info-list span{font-size:14.5px; color:#e3cba6;}
+.contact-actions{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+
+.contact-card{
+  background:var(--charcoal); border-radius:20px; padding:36px; box-shadow:0 20px 50px -20px rgba(0,0,0,.5);
+}
+.contact-card h3{color:var(--cream); font-size:22px; margin-bottom:6px;}
+.contact-card p.sub{color:#cdb088; font-size:14px; margin-bottom:24px;}
+.form-row{display:flex; flex-direction:column; gap:7px; margin-bottom:18px;}
+.form-row label{font-size:12.5px; letter-spacing:.05em; text-transform:uppercase; font-family:'Space Mono',monospace; color:var(--gold);}
+.form-row input, .form-row select, .form-row textarea{
+  background:rgba(255,255,255,.06); border:1px solid rgba(217,164,65,.3); color:var(--cream);
+  border-radius:10px; padding:12px 14px; font-family:'Outfit',sans-serif; font-size:14.5px; outline:none;
+  transition:border-color .25s ease, background .25s ease;
+}
+.form-row input::placeholder, .form-row textarea::placeholder{color:#9a8367;}
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus{border-color:var(--gold); background:rgba(255,255,255,.1);}
+.contact-card .btn-primary{width:100%; justify-content:center; margin-top:6px;}
+.form-hours{margin-top:22px; padding-top:18px; border-top:1px dashed rgba(217,164,65,.3); font-size:13px; color:#cdb088;}
+@media (max-width:920px){.contact-grid{grid-template-columns:1fr;}}
+
+/* ================= FOOTER ================= */
+.site-footer{background:var(--charcoal); color:#cdb088; padding:60px 0 26px;}
+.footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(217,164,65,.18);}
+.footer-grid h4{color:var(--cream); font-family:'Space Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:18px;}
+.footer-grid ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px;}
+.footer-grid ul a{font-size:14.5px; color:#cdb088; transition:color .2s ease;}
+.footer-grid ul a:hover{color:var(--gold);}
+.footer-brand .brand{color:var(--cream);}
+.footer-brand p{margin-top:16px; font-size:14px; max-width:280px; color:#a98a63;}
+.footer-social{display:flex; gap:12px; margin-top:20px;}
+.footer-social a{
+  width:38px; height:38px; border-radius:50%; background:rgba(217,164,65,.12); display:flex; align-items:center; justify-content:center;
+  transition:background .25s ease, transform .25s ease;
+}
+.footer-social a:hover{background:var(--gold); transform:translateY(-3px);}
+.footer-social svg{width:17px; height:17px; color:var(--cream);}
+.footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px; font-size:13px; flex-wrap:wrap; gap:10px;}
+@media (max-width:920px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.footer-grid{grid-template-columns:1fr;}}
+
+/* ---------- image fallback ---------- */
+.img-fallback{
+  background:linear-gradient(135deg, var(--gold), var(--rust)) !important;
+}
+
+/* ---------- WhatsApp float button ---------- */
+.float-wa{
+  position:fixed; bottom:24px; right:24px; z-index:90;
+  width:58px; height:58px; border-radius:50%; background:#3CA64B; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 24px -6px rgba(0,0,0,.4); animation:pulse-wa 2.6s ease-in-out infinite;
+}
+.float-wa svg{width:28px; height:28px; color:#fff;}
+@keyframes pulse-wa{0%,100%{box-shadow:0 10px 24px -6px rgba(60,166,75,.5);} 50%{box-shadow:0 10px 30px -2px rgba(60,166,75,.85);}}
+@media (prefers-reduced-motion: reduce){.float-wa{animation:none;}}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="site-nav" id="siteNav">
+  <a href="#top" class="brand">
+    <span class="brand-mark">B</span>
+    <span>Bhavna's Savors<small>HOMEMADE · KARACHI</small></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" class="nav-link">Our Story</a></li>
+    <li><a href="#menu" class="nav-link">Menu</a></li>
+    <li><a href="#why" class="nav-link">Why Us</a></li>
+    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+    <li><a href="#reviews" class="nav-link">Reviews</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#contact" class="btn btn-outline">Order Now</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-stamp"><span class="seal">est</span> Since 2003 · Made fresh, daily</div>
+      <h1>Savories worth <em>coming home</em> for.</h1>
+      <p class="lead">Hot samosas, golden pakoras, crunchy namkeen and festival mithai — made the way Bhavna's grandmother made them. No shortcuts, no preservatives, just real flavour from a real home kitchen in Karachi.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">Browse the Menu</a>
+        <a href="https://wa.me/923001234567" target="_blank" rel="noopener" class="btn btn-outline">Order on WhatsApp</a>
+      </div>
+      <div class="hero-trust">
+        <div><b>22+</b><span>Years of Recipes</span></div>
+        <div><b>40+</b><span>Savories &amp; Sweets</span></div>
+        <div><b>5,000+</b><span>Happy Families</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="steam" style="left:34%; top:-20px;">
+        <svg width="40" height="160" viewBox="0 0 40 160"><path d="M20 160 C 5 130, 35 110, 20 80 C 5 50, 35 30, 20 0"/></svg>
+      </div>
+      <div class="hero-photo-main">
+        <img src="https://images.pexels.com/photos/4449068/pexels-photo-4449068.jpeg?auto=compress&cs=tinysrgb&w=900"
+             alt="Fresh samosas in a wicker basket on a dinner table"
+             onerror="imgFallback(this)" loading="eager">
+      </div>
+      <div class="hero-photo-float">
+        <img src="https://images.pexels.com/photos/8887049/pexels-photo-8887049.jpeg?auto=compress&cs=tinysrgb&w=500"
+             alt="Vibrant Indian sweets displayed in metal bowls on a festive tray"
+             onerror="imgFallback(this)" loading="lazy">
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <span>Fresh Aloo Samosas</span><span>Crispy Pakoras</span><span>Royal Namkeen Mixture</span><span>Hot Jalebi</span><span>Besan Ladoo</span><span>Kaju Katli</span><span>Evening Tea Combos</span><span>Festival Hampers</span>
+    <span>Fresh Aloo Samosas</span><span>Crispy Pakoras</span><span>Royal Namkeen Mixture</span><span>Hot Jalebi</span><span>Besan Ladoo</span><span>Kaju Katli</span><span>Evening Tea Combos</span><span>Festival Hampers</span>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photos reveal">
+      <div class="about-photo-a">
+        <img src="https://images.pexels.com/photos/30900708/pexels-photo-30900708.jpeg?auto=compress&cs=tinysrgb&w=800"
+             alt="Hands preparing homemade samosas with pastry sheets and savory filling" onerror="imgFallback(this)" loading="lazy">
+      </div>
+      <div class="about-photo-b">
+        <img src="https://images.pexels.com/photos/8887065/pexels-photo-8887065.jpeg?auto=compress&cs=tinysrgb&w=500"
+             alt="Women preparing traditional sweets together for a celebration" onerror="imgFallback(this)" loading="lazy">
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">Our Story</div>
+      <h2>One home kitchen.<br>One unwavering recipe book.</h2>
+      <p>It started in 2003 in Bhavna Aunty's own kitchen on Tariq Road, frying her mother's samosa recipe for the neighbours every Sunday. Word travelled faster than the oil could heat — and a little tea-time hobby grew into Karachi's most trusted name for homemade savories.</p>
+      <p>Today, the same recipes are still hand-rolled, hand-mixed and fried in small batches every single morning — nothing is made ahead, frozen, or mass-produced. Every samosa is folded by hand. Every mixture is roasted, not just seasoned.</p>
+      <p class="about-quote">"We never set out to build a brand. We just refused to let the taste of home get lost."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY US ================= -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="why-head reveal">
+      <div class="eyebrow">Why Choose Us</div>
+      <h2>Reliability you can taste.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Made Fresh, Daily</h3>
+        <p>Nothing leaves our kitchen a second time. Every batch is cooked the same morning it's sold — no freezers, no reheats.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg></div>
+        <h3>Clean, Hygienic Kitchen</h3>
+        <p>Our prep counters, oil and storage are checked daily against our own strict hygiene checklist — no exceptions.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c2 0 3.3 1 5.5 3 2.2-2 3.5-3 5.5-3 3.5 0 6 3.5 4 7.5C19 16.65 12 21 12 21z"/></svg></div>
+        <h3>Zero Preservatives</h3>
+        <p>No artificial colours, no shelf-life chemicals. What goes in is what your grandmother would recognise.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg></div>
+        <h3>Custom Hampers</h3>
+        <p>Tell us your guest count and budget — we'll build a tea-time spread or festival hamper around it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MENU ================= -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu-head reveal">
+      <div class="eyebrow">The Menu Book</div>
+      <h2>Pick your favourites</h2>
+      <p>Priced by piece, dozen, or weight — order as little as a quarter kilo or as much as a wedding hamper.</p>
+    </div>
+
+    <div class="menu-tabs" id="menuTabs">
+      <button class="menu-tab active" data-tab="samosas">Samosas &amp; Kachori</button>
+      <button class="menu-tab" data-tab="pakora">Pakora &amp; Fritters</button>
+      <button class="menu-tab" data-tab="namkeen">Namkeen &amp; Mixtures</button>
+      <button class="menu-tab" data-tab="sweets">Sweets &amp; Mithai</button>
+      <button class="menu-tab" data-tab="combos">Combos &amp; Hampers</button>
+    </div>
+
+    <!-- SAMOSAS & KACHORI -->
+    <div class="menu-panel active" id="samosas">
+      <div class="menu-list">
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/37153389/pexels-photo-37153389.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Crispy fried aloo samosas" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Aloo Samosa</h4><span class="menu-tag">Spiced potato &amp; pea filling, hand-folded</span>
+            <div class="price-row"><span class="qty">1 piece</span><span class="dots"></span><span class="price">Rs 40</span></div>
+            <div class="price-row"><span class="qty">1 dozen</span><span class="dots"></span><span class="price">Rs 450</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/9027521/pexels-photo-9027521.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Samosa served with green and tamarind chutneys" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Keema Samosa</h4><span class="menu-tag">Minced mutton, slow-cooked masala</span>
+            <div class="price-row"><span class="qty">1 piece</span><span class="dots"></span><span class="price">Rs 60</span></div>
+            <div class="price-row"><span class="qty">1 dozen</span><span class="dots"></span><span class="price">Rs 650</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/29037272/pexels-photo-29037272.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Golden fried kachori cooling in a colander" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Moong Dal Kachori</h4><span class="menu-tag">Lentil &amp; fennel stuffed, flaky crust</span>
+            <div class="price-row"><span class="qty">1 piece</span><span class="dots"></span><span class="price">Rs 50</span></div>
+            <div class="price-row"><span class="qty">1 dozen</span><span class="dots"></span><span class="price">Rs 550</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/17659370/pexels-photo-17659370.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Crispy potato aloo tikki served with green chutney" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Aloo Tikki / Vada</h4><span class="menu-tag">Pan-fried potato patty, mint chutney</span>
+            <div class="price-row"><span class="qty">1 piece</span><span class="dots"></span><span class="price">Rs 45</span></div>
+            <div class="price-row"><span class="qty">1 dozen</span><span class="dots"></span><span class="price">Rs 480</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAKORA & FRITTERS -->
+    <div class="menu-panel" id="pakora">
+      <div class="menu-list">
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/35066809/pexels-photo-35066809.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Crispy vegetable pakoras with ketchup dip" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Mix Vegetable Pakora</h4><span class="menu-tag">Onion, spinach &amp; potato, gram-flour batter</span>
+            <div class="price-row"><span class="qty">250g</span><span class="dots"></span><span class="price">Rs 350</span></div>
+            <div class="price-row"><span class="qty">500g</span><span class="dots"></span><span class="price">Rs 650</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/23266987/pexels-photo-23266987.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Pakora served with mint and green chutney" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Crispy Aloo Pakora</h4><span class="menu-tag">Thin-sliced potato, extra crunch</span>
+            <div class="price-row"><span class="qty">250g</span><span class="dots"></span><span class="price">Rs 320</span></div>
+            <div class="price-row"><span class="qty">500g</span><span class="dots"></span><span class="price">Rs 600</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/29547418/pexels-photo-29547418.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Golden brown pakoras freshly fried, resting on paper towel" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Paneer Pakora</h4><span class="menu-tag">Soft cottage cheese, ajwain batter</span>
+            <div class="price-row"><span class="qty">250g</span><span class="dots"></span><span class="price">Rs 420</span></div>
+            <div class="price-row"><span class="qty">500g</span><span class="dots"></span><span class="price">Rs 800</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/33104648/pexels-photo-33104648.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Delicious Indian pakoda served in a traditional metal bowl" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Bhavna's Mixed Pakoda Bowl</h4><span class="menu-tag">Our tea-stall favourite, served warm</span>
+            <div class="price-row"><span class="qty">300g</span><span class="dots"></span><span class="price">Rs 380</span></div>
+            <div class="price-row"><span class="qty">600g</span><span class="dots"></span><span class="price">Rs 720</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAMKEEN & MIXTURES -->
+    <div class="menu-panel" id="namkeen">
+      <div class="menu-list">
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/17480807/pexels-photo-17480807.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Crunchy golden-brown fried namkeen snack sticks" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Bhavna's Signature Mixture</h4><span class="menu-tag">Sev, peanuts, lentils &amp; curry leaf</span>
+            <div class="price-row"><span class="qty">250g</span><span class="dots"></span><span class="price">Rs 380</span></div>
+            <div class="price-row"><span class="qty">500g</span><span class="dots"></span><span class="price">Rs 720</span></div>
+            <div class="price-row"><span class="qty">1 kg</span><span class="dots"></span><span class="price">Rs 1,380</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/27643179/pexels-photo-27643179.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Indian breakfast spread featuring tea, namkeen, and rusks" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Khatta Meetha Sev</h4><span class="menu-tag">Sweet, sour &amp; spicy gram-flour sev</span>
+            <div class="price-row"><span class="qty">250g</span><span class="dots"></span><span class="price">Rs 350</span></div>
+            <div class="price-row"><span class="qty">500g</span><span class="dots"></span><span class="price">Rs 660</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/6576317/pexels-photo-6576317.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Assortment of delicious Indian snacks and sweets served with tea" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Roasted Masala Peanuts</h4><span class="menu-tag">Slow roasted, tossed in house masala</span>
+            <div class="price-row"><span class="qty">250g</span><span class="dots"></span><span class="price">Rs 300</span></div>
+            <div class="price-row"><span class="qty">500g</span><span class="dots"></span><span class="price">Rs 560</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SWEETS & MITHAI -->
+    <div class="menu-panel" id="sweets">
+      <div class="menu-list">
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/8659010/pexels-photo-8659010.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Close-up of homemade Indian besan ladoo sweets" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Besan Ladoo</h4><span class="menu-tag">Roasted gram flour, ghee &amp; cardamom</span>
+            <div class="price-row"><span class="qty">1 piece</span><span class="dots"></span><span class="price">Rs 60</span></div>
+            <div class="price-row"><span class="qty">1 dozen</span><span class="dots"></span><span class="price">Rs 650</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/10514163/pexels-photo-10514163.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Plate of Kaju Katli sweets with festive decor" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Kaju Katli</h4><span class="menu-tag">Pure cashew fudge, silver leaf</span>
+            <div class="price-row"><span class="qty">250g</span><span class="dots"></span><span class="price">Rs 1,200</span></div>
+            <div class="price-row"><span class="qty">500g</span><span class="dots"></span><span class="price">Rs 2,300</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/11887844/pexels-photo-11887844.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Close-up of traditional Indian gulab jamun dessert" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Gulab Jamun</h4><span class="menu-tag">Soft milk dumplings in rose syrup</span>
+            <div class="price-row"><span class="qty">1 piece</span><span class="dots"></span><span class="price">Rs 50</span></div>
+            <div class="price-row"><span class="qty">1 dozen</span><span class="dots"></span><span class="price">Rs 550</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/5831655/pexels-photo-5831655.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Close-up of vibrant orange jalebi on a plate" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Jalebi (Fresh &amp; Hot)</h4><span class="menu-tag">Made to order, served piping hot</span>
+            <div class="price-row"><span class="qty">250g</span><span class="dots"></span><span class="price">Rs 400</span></div>
+            <div class="price-row"><span class="qty">500g</span><span class="dots"></span><span class="price">Rs 750</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/11484120/pexels-photo-11484120.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Vibrant collection of assorted Indian sweets with almonds and pistachios" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Assorted Mithai Box</h4><span class="menu-tag">Chef's pick of 4 sweets, gift-boxed</span>
+            <div class="price-row"><span class="qty">500g box</span><span class="dots"></span><span class="price">Rs 1,650</span></div>
+            <div class="price-row"><span class="qty">1 kg box</span><span class="dots"></span><span class="price">Rs 3,100</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMBOS & HAMPERS -->
+    <div class="menu-panel" id="combos">
+      <div class="menu-list">
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/36326292/pexels-photo-36326292.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Hot glass of Indian masala chai" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Evening Tea Combo</h4><span class="menu-tag">2 cups masala chai + 6 mixed savories</span>
+            <div class="price-row"><span class="qty">Serves 2</span><span class="dots"></span><span class="price">Rs 850</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/36236282/pexels-photo-36236282.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Colorful display of assorted Indian sweets and snacks" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Festival Hamper</h4><span class="menu-tag">Assorted sweets &amp; namkeen, gift-wrapped</span>
+            <div class="price-row"><span class="qty">1 kg hamper</span><span class="dots"></span><span class="price">Rs 2,800</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-thumb"><img src="https://images.pexels.com/photos/37068875/pexels-photo-37068875.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Tray of freshly prepared samosas ready to be served at a gathering" onerror="imgFallback(this)" loading="lazy"></div>
+          <div class="menu-info">
+            <h4>Party Platter</h4><span class="menu-tag">50 pcs mixed samosas, kachori &amp; pakora</span>
+            <div class="price-row"><span class="qty">Serves 12–15</span><span class="dots"></span><span class="price">Rs 3,200</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="menu-note">Prices in PKR · Custom quantities &amp; advance festival orders welcome — just message us on WhatsApp.</p>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="eyebrow reveal">From Our Kitchen</div>
+    <h2 class="reveal">A peek behind the frying pan.</h2>
+    <div class="gallery-grid reveal">
+      <figure>
+        <img src="https://images.pexels.com/photos/35069427/pexels-photo-35069427.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Vendor frying traditional snacks in a large pan" onerror="imgFallback(this)" loading="lazy">
+        <figcaption>Fresh batches, every morning</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.pexels.com/photos/32161512/pexels-photo-32161512.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hands preparing homemade samosa filling with potatoes" onerror="imgFallback(this)" loading="lazy">
+        <figcaption>Hand-mixed fillings</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.pexels.com/photos/9672994/pexels-photo-9672994.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Tray of traditional sweets on a metal platter" onerror="imgFallback(this)" loading="lazy">
+        <figcaption>Mithai, plated with care</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.pexels.com/photos/18413481/pexels-photo-18413481.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Man preparing masala chai with steam rising at a market stall" onerror="imgFallback(this)" loading="lazy">
+        <figcaption>Chai always on the boil</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.pexels.com/photos/5947062/pexels-photo-5947062.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Ceramic cup of chai tea with cinnamon and star anise" onerror="imgFallback(this)" loading="lazy">
+        <figcaption>Spiced, never rushed</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.pexels.com/photos/11413997/pexels-photo-11413997.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Friends sharing masala chai in traditional clay cups" onerror="imgFallback(this)" loading="lazy">
+        <figcaption>Best enjoyed together</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="reviews-head reveal">
+      <div class="eyebrow">Customer Reviews</div>
+      <h2>Loved across Karachi, one tea-time at a time.</h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"The keema samosas taste exactly like my dadi's recipe — and I never thought I'd say that about anything store-bought. Now it's a Sunday ritual."</p>
+        <div class="reviewer"><div class="avatar">AS</div><div><b>Ayesha S.</b><span>Clifton, Karachi</span></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Ordered the festival hamper for Eid and every single sweet was fresh, not overly sweet, and beautifully packed. Family wouldn't stop asking where it was from."</p>
+        <div class="reviewer"><div class="avatar">HM</div><div><b>Hamza M.</b><span>DHA Phase 5</span></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Their namkeen mixture is genuinely addictive. No weird aftertaste like the packaged stuff — you can tell it's roasted properly, not just flavoured."</p>
+        <div class="reviewer"><div class="avatar">ZR</div><div><b>Zara R.</b><span>Gulshan-e-Iqbal</span></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"We ordered the party platter for 15 guests with two days' notice and it arrived exactly on time, still warm. Saved our entire evening."</p>
+        <div class="reviewer"><div class="avatar">FK</div><div><b>Farhan K.</b><span>PECHS</span></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Their jalebi is hands-down the crispiest I've had in this city, and I've tried most of the popular sweet shops. Worth the wait when they make it fresh."</p>
+        <div class="reviewer"><div class="avatar">SN</div><div><b>Sana N.</b><span>Tariq Road</span></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"I have a small grocery store and have been restocking their mixture and ladoo for two years now — customers ask for it by name."</p>
+        <div class="reviewer"><div class="avatar">IB</div><div><b>Imran B.</b><span>North Nazimabad</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Let's get your order rolling.</h2>
+      <p>Call, WhatsApp, or stop by — we take orders for same-day pickup, delivery across Karachi, and advance festival bookings.</p>
+      <ul class="contact-info-list">
+        <li>
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><b>+92 300 1234567</b><span>Call or WhatsApp, 10am – 9pm</span></div>
+        </li>
+        <li>
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg></div>
+          <div><b>hello@bhavnasavors.com</b><span>Bulk &amp; corporate orders</span></div>
+        </li>
+        <li>
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><b>Shop 4, Tariq Road</b><span>Karachi, Sindh, Pakistan</span></div>
+        </li>
+        <li>
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div><b>Open Daily, 10am – 9pm</b><span>Fresh batches go out from 11am</span></div>
+        </li>
+      </ul>
+      <div class="contact-actions">
+        <a href="tel:+923001234567" class="btn btn-light">Call Now</a>
+        <a href="https://wa.me/923001234567" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:var(--cream); color:var(--cream);">WhatsApp Us</a>
+      </div>
+    </div>
+
+    <div class="contact-card reveal">
+      <h3>Send an Order Enquiry</h3>
+      <p class="sub">We'll reply on WhatsApp or call you back within the hour.</p>
+      <form id="orderForm" onsubmit="return handleFormSubmit(event)">
+        <div class="form-row">
+          <label for="cname">Your Name</label>
+          <input id="cname" type="text" placeholder="e.g. Sara Khan" required>
+        </div>
+        <div class="form-row">
+          <label for="cphone">Phone Number</label>
+          <input id="cphone" type="tel" placeholder="03xx-xxxxxxx" required>
+        </div>
+        <div class="form-row">
+          <label for="citem">What would you like?</label>
+          <select id="citem">
+            <option>Samosas &amp; Kachori</option>
+            <option>Pakora &amp; Fritters</option>
+            <option>Namkeen &amp; Mixtures</option>
+            <option>Sweets &amp; Mithai</option>
+            <option>Combo / Hamper / Bulk Order</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="cmsg">Order details</label>
+          <textarea id="cmsg" rows="3" placeholder="Quantities, date needed, delivery address..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Enquiry</button>
+      </form>
+      <div class="form-hours">We're closed on major public holidays — check our WhatsApp status for live updates.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand"><span class="brand-mark">B</span><span>Bhavna's Savors</span></a>
+        <p>Homemade samosas, pakoras, namkeen and mithai — made fresh daily in Karachi since 2003.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://wa.me/923001234567" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#menu">Samosas &amp; Kachori</a></li>
+          <li><a href="#menu">Namkeen &amp; Mixtures</a></li>
+          <li><a href="#menu">Sweets &amp; Mithai</a></li>
+          <li><a href="#menu">Combos &amp; Hampers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+923001234567">+92 300 1234567</a></li>
+          <li><a href="mailto:hello@bhavnasavors.com">hello@bhavnasavors.com</a></li>
+          <li><a href="#contact">Tariq Road, Karachi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Bhavna's Savors. All rights reserved.</span>
+      <span>Made with love, ghee &amp; a little bit of steam.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/923001234567" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.96.55 3.78 1.5 5.34L2 22l4.92-1.6a9.9 9.9 0 0 0 5.12 1.41h.01c5.46 0 9.91-4.45 9.91-9.9 0-2.65-1.03-5.13-2.9-7C17.18 3.03 14.69 2 12.04 2zm0 18.1c-1.6 0-3.13-.43-4.46-1.24l-.32-.19-3.3 1.08 1.08-3.2-.21-.33a8.1 8.1 0 0 1-1.25-4.31c0-4.49 3.66-8.16 8.17-8.16 2.18 0 4.23.85 5.77 2.39a8.1 8.1 0 0 1 2.39 5.77c0 4.51-3.66 8.19-8.18 8.19zm4.47-6.13c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.12-.12.27-.31.4-.46.13-.16.18-.27.27-.45.09-.18.04-.34-.04-.46-.08-.12-.55-1.32-.76-1.81-.2-.47-.4-.41-.55-.42-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02 0 1.19.87 2.34 1 2.5.12.16 1.65 2.52 4.01 3.44 2.36.91 2.36.61 2.78.57.42-.04 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script>
+// year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// image fallback (in case a hotlinked photo cannot load — shows brand gradient instead of a broken icon)
+function imgFallback(el){
+  el.onerror = null;
+  el.removeAttribute('src');
+  el.style.display='block';
+  el.style.width='100%'; el.style.height='100%';
+  el.parentElement.classList.add('img-fallback');
+  el.style.opacity='0';
+}
+
+// nav scroll state
+const nav = document.getElementById('siteNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// mobile nav toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// menu tabs
+const tabs = document.querySelectorAll('.menu-tab');
+const panels = document.querySelectorAll('.menu-panel');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+// scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.12});
+revealEls.forEach(el => io.observe(el));
+
+// contact form (demo — no backend wired up)
+function handleFormSubmit(e){
+  e.preventDefault();
+  const name = document.getElementById('cname').value.trim();
+  const phone = document.getElementById('cphone').value.trim();
+  const item = document.getElementById('citem').value;
+  const msg = document.getElementById('cmsg').value.trim();
+  const text = encodeURIComponent(`Hi Bhavna's Savors! My name is ${name} (${phone}). I'd like to order: ${item}. ${msg}`);
+  window.open(`https://wa.me/923001234567?text=${text}`, '_blank');
+  return false;
+}
+</script>
+</body>
+</html>
