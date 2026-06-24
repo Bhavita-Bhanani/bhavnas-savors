@@ -2,8 +2,6 @@
 
 A single-page website for **Bhavna's Savors**, a homemade snacks and mithai brand based in Karachi. Built as a static site — no build step, no framework, no dependencies beyond Google Fonts.
 
-🔗 Live preview: open `bhavnas-savors.html` directly in any browser, or deploy via GitHub Pages (steps below).
-
 ## Features
 
 - Animated hero section with floating photo cards and a looping marquee ticker
@@ -22,16 +20,6 @@ A single-page website for **Bhavna's Savors**, a homemade snacks and mithai bran
 - Plain HTML5, CSS3 (custom properties, grid, flexbox, keyframe animations), vanilla JavaScript
 - Fonts: Fraunces, Outfit, Space Mono (via Google Fonts)
 - Photography sourced from [Pexels](https://www.pexels.com) (free license, no attribution required)
-
-## Before you deploy
-
-The phone number and contact details in this site are placeholders. Update the following before going live:
-
-- `+92 300 0000000` — appears in the Contact section, the footer, and inside the `tel:` / `wa.me` links in the HTML and in `script` at the bottom of the file
-- `hello@bhavnasavors.com` — email address
-- `Shop 4, Tariq Road, Karachi` — address
-
-Use your editor's find-and-replace across the file for a quick swap.
 
 ## Project structure
 
