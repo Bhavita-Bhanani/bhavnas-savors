@@ -1,6 +1,6 @@
 # Bhavna's Savors
 
-A single-page website for **Bhavna's Savors**, a homemade snacks and mithai brand based in Karachi. Built as a static site — no build step, no framework, no dependencies beyond Google Fonts.
+A single-page website for **Bhavna's Savors**, a homemade snacks and mithai brand based in Karachi. Built as a static site,no build step, no framework, no dependencies beyond Google Fonts.
 
 ## Features
 
